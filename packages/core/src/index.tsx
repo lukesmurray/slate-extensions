@@ -1,3 +1,4 @@
+import sum from '@slate-extensions/core';
 import React, { FC, HTMLAttributes, ReactChild } from 'react';
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -11,5 +12,9 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
  * A custom Thing component. Neat!
  */
 export const Thing: FC<Props> = ({ children }) => {
-  return <div>{children || `the snozzberries taste like snozzberries`}</div>;
+  return (
+    <div>
+      {children || `the snozzberries taste like snozzberries ${sum(5, 6)}`}
+    </div>
+  );
 };
