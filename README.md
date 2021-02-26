@@ -54,6 +54,8 @@ yarn husky install
 yarn husky add .husky/prepare-commit-msg "exec < /dev/tty && git cz --hook || true"
 # check commit messages with commitlint
 yarn husky add .husky/commit-msg "yarn commitlint --edit $1"
+# lint before commit
+yarn husky add .husky/pre-commit "tsdx lint"
 # Configure commitlint to use conventional config
 echo "add the following to your package.json"
 cat << EOF
