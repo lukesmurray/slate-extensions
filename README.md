@@ -224,8 +224,8 @@ cat << EOF
 EOF
 ```
 
-In the `example` package we have a parcel build copied from one of the tsdx templates and modified slightly to open the browser on build, keep files in the `src` directory, and to use the base `tsconfig.build.json`
-It seems to work with very few changes to the original configuration.
+In the `example` package we have a vite app created using `yarn create @vitejs/app` and selecting the `react+typescript` options.
+The only change is using a custom `tsconfig.build.json` file.
 
 In the `storybook` package we have a storybook.
 Storybook requires a local `tsconfig.json` so we have one there.

@@ -2,23 +2,24 @@
   "name": "@slate-extensions/example",
   "author": "Luke Murray",
   "version": "0.1.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/index.html --open",
-    "build": "parcel build src/index.html"
+    "start": "vite",
+    "build": "tsc -p tsconfig.build.json && vite build",
+    "serve": "vite preview",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "@slate-extensions/core": "^0.1.0",
     "react": "^17.0.1",
-    "react-app-polyfill": "^1.0.0",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
-    "parcel": "^1.12.3",
-    "typescript": "^3.4.5"
+    "@vitejs/plugin-react-refresh": "^1.1.0",
+    "typescript": "^3.4.5",
+    "vite": "^2.0.1"
   },
   "private": true
 }
