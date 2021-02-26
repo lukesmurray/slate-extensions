@@ -5,6 +5,7 @@
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
     "commitizen": "^4.2.3",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^5.1.1",
     "lerna": "^3.22.1"
   },
@@ -36,12 +37,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
   },
   "resolutions": {
     "**/typescript": "^4.0.5",

@@ -1,5 +1,5 @@
-import { sum } from '@slate-extensions/common';
-import React, { FC, HTMLAttributes, ReactChild } from 'react';
+import { sum } from "@slate-extensions/common";
+import React, { FC, HTMLAttributes, ReactChild } from "react";
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** custom content, defaults to 'the snozzberries taste like snozzberries' */

@@ -1,14 +1,14 @@
-import { Props, Thing } from '@slate-extensions/core';
-import { Meta, Story } from '@storybook/react';
-import React from 'react';
+import { Props, Thing } from "@slate-extensions/core";
+import { Meta, Story } from "@storybook/react";
+import React from "react";
 
 const meta: Meta = {
-  title: 'Welcome',
+  title: "Welcome",
   component: Thing,
   argTypes: {
     children: {
       control: {
-        type: 'text',
+        type: "text",
       },
     },
   },
