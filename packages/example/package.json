@@ -1,7 +1,7 @@
 {
   "name": "@slate-extensions/example",
   "author": "Luke Murray",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
