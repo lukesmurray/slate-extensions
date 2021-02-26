@@ -93,6 +93,14 @@ yarn run version
 
 TODO write this
 
+### Upgrading all packages
+
+```
+npm install -g npm-check-updates
+lerna exec -- "ncu -u"
+yarn install
+```
+
 ## How this Repo Was Setup?
 
 ```sh
