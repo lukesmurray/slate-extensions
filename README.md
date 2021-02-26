@@ -8,12 +8,16 @@ Based on [how to set up a typescript monorepo with lerna](https://medium.com/@Ni
 
 ## Features
 
-- go to definition works
-- `yarn start` starts storybook and example with hot reloading enabled for all packages
+- go to definition works out of the box everywhere
+- `yarn start` starts storybook and an example with hot reloading enabled for all packages
 - `yarn test` runs tests in every package
 - `yarn lint` runs linting in every package
 
-## Development
+## Make it your own
+
+Replace `@slate/extensions` everywhere with your own scope.
+Delete `CHANGELOG.md`.
+Change the versions of all the packages to `0.0.0` (TODO show how to do this with `lerna version`)
 
 ## Common Tasks
 
