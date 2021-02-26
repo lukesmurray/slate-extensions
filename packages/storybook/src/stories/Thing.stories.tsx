@@ -1,6 +1,6 @@
-import React from 'react';
+import { Props, Thing } from '@slate-extensions/core';
 import { Meta, Story } from '@storybook/react';
-import { Thing, Props } from '../src';
+import React from 'react';
 
 const meta: Meta = {
   title: 'Welcome',

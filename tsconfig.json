@@ -10,8 +10,7 @@
     // this is the magic sauce, add every project to your paths field
     // so the compiler knows where to look for them
     "paths": {
-      "@slate-extensions/core": ["packages/core/src"],
-      "@slate-extensions/common": ["packages/common/src"]
+      "@slate-extensions/*": ["packages/*/src"]
     }
   }
 }

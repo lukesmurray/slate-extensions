@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Thing } from '../.';
+import { Default as Thing } from '../src/stories/Thing.stories';
 
 describe('Thing', () => {
   it('renders without crashing', () => {
