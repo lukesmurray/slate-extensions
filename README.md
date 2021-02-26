@@ -83,8 +83,10 @@ lerna run test --stream --parallel -- --watch
 
 ### Incrementing the version of all packages (they are kept in sync)
 
+TODO document `GH_TOKEN` required by [`--create-release`](https://github.com/lerna/lerna/blob/main/commands/version/README.md#--create-release-type)
+
 ```sh
-lerna version
+yarn run version
 ```
 
 ### Publishing
