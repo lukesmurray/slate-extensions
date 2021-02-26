@@ -1,10 +1,14 @@
 {
+  // extend common settings
   "extends": "./tsconfig.build.json",
-  "include": ["packages", "types", "scripts", "example"],
+  // include packages and rypes
+  "include": ["packages", "types", "example"],
   "compilerOptions": {
     "allowJs": false,
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
+    // this is the magic sauce, add every project to your paths field
+    // so the compiler knows where to look for them
     "paths": {
       "@slate-extensions/core": ["packages/core/src"],
       "@slate-extensions/common": ["packages/common/src"]

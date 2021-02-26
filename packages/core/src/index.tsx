@@ -1,4 +1,4 @@
-import sum from '@slate-extensions/core';
+import { sum } from '@slate-extensions/common';
 import React, { FC, HTMLAttributes, ReactChild } from 'react';
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {

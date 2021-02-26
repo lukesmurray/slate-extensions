@@ -1,5 +1,7 @@
 # Lerna Monorepo With Typescript
 
+Based on [how to set up a typescript monorepo with lerna](https://medium.com/@NiGhTTraX/how-to-set-up-a-typescript-monorepo-with-lerna-c6acda7d4559) and [tsdx-monorepo](https://github.com/jaredpalmer/tsdx-monorepo)
+
 ## Setup
 
 ```sh
@@ -67,6 +69,70 @@ cat << EOF
 "postinstall": "husky install",
 "prepublishOnly": "pinst --disable",
 "postpublish": "pinst --enable",
+EOF
+# create a common tsconfig for all your packages
+echo "add the following to tsconfig.build.json"
+cat << EOF
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "importHelpers": true,
+    // output .d.ts declaration files for consumers
+    "declaration": true,
+    // output .js.map sourcemap files for consumers
+    "sourceMap": true,
+    // stricter type-checking for stronger correctness. Recommended by TS
+    "strict": true,
+    // linter checks for common issues
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    // noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // use Node's module resolution algorithm, instead of the legacy TS one
+    "moduleResolution": "node",
+    // transpile JSX to React.createElement
+    "jsx": "react",
+    // interop between ESM and CJS modules. Recommended by TS
+    "esModuleInterop": true,
+    // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+    "skipLibCheck": true,
+    // error out if import and file system have a casing mismatch. Recommended by TS
+    "forceConsistentCasingInFileNames": true,
+    // `tsdx build` ignores this option, but it is commonly used when type-checking separately with `tsc`
+    "noEmit": true
+  }
+}
+EOF
+echo "add the following to your tsconfig.json to tell your ide where to look for dependencies"
+cat << EOF
+{
+  // extend common settings
+  "extends": "./tsconfig.build.json",
+  // include packages and rypes
+  "include": ["packages", "types", "example"],
+  "compilerOptions": {
+    "allowJs": false,
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./types"],
+    // this is the magic sauce, add every project to your paths field
+    // so the compiler knows where to look for them
+    "paths": {
+      "@slate-extensions/core": ["packages/core/src"],
+      "@slate-extensions/common": ["packages/common/src"]
+    }
+  }
+}
+EOF
+echo "add the following to each of your projects as a local tsconfig.build.json"
+cat << EOF
+{
+  // extend common settings
+  "extends": "../../tsconfig.build.json",
+  // include local files
+  "include": ["src", "types", "../../types"]
+}
 EOF
 
 ```
