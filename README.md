@@ -2,9 +2,96 @@
 
 Based on [how to set up a typescript monorepo with lerna](https://medium.com/@NiGhTTraX/how-to-set-up-a-typescript-monorepo-with-lerna-c6acda7d4559) and [tsdx-monorepo](https://github.com/jaredpalmer/tsdx-monorepo)
 
+## Quick Start
+
+`yarn install && yarn start`
+
+## Features
+
+- go to definition works
+- `yarn start` starts storybook and example with hot reloading enabled for all packages
+- `yarn test` runs tests in every package
+- `yarn lint` runs linting in every package
+
 ## Development
 
-Steps for setting up the lerna mono repo
+## Common Tasks
+
+### Adding a new package
+
+```sh
+# go to the packages directory
+cd packages;
+# create your package without the name (don't use storybook)
+npx tsdx create utils
+# remove the old husky hook from package.json and the prettier config
+cat << EOF
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+EOF
+# change the name in package.json to "@slate-extensions/utils"
+cat << EOF
+"name": "@slate-extensions/utils"
+EOF
+
+# create a new tsconfig.build.json and remove the default tsconfig.json
+cat << EOF
+{
+  "extends": "../../tsconfig.build.json",
+  "include": ["src", "types", "../../types"]
+}
+EOF
+
+# make the scripts point to the new tsconfig.build.json
+cat << EOF
+    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "yarn build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+EOF
+
+# remove the example folder if one exists
+
+
+```
+
+### Expressing a Dependency Between Packages
+
+Make `@slate-extensions/common` a dependency of `@slate-extensions/core`
+
+```sh
+lerna add "@slate-extensions/common" --scope="@slate-extensions/core"  [--dev] [--exact] [--peer]
+```
+
+### Running Tests in Watch mode
+
+```sh
+lerna run test --stream --parallel -- --watch
+```
+
+### Incrementing the version of all packages (they are kept in sync)
+
+```sh
+lerna version
+```
+
+### Publishing
+
+TODO write this
+
+## How this Repo Was Setup?
 
 ```sh
 # start a lerna repo
@@ -140,74 +227,11 @@ cat << EOF
 EOF
 ```
 
-In the `example` package we have a parcel build.
+In the `example` package we have a parcel build copied from one of the tsdx templates and modified slightly to open the browser on build, keep files in the `src` directory, and to use the base `tsconfig.build.json`
 It seems to work with very few changes to the original configuration.
 
 In the `storybook` package we have a storybook.
 Storybook requires a local `tsconfig.json` so we have one there.
+The storybook example was ripped out of a tsdx template but the storybook files are moved into the `src` directory and the package.json is greatly simplified.
 
-## Common Tasks
-
-### Adding a new package
-
-```sh
-# go to the packages directory
-cd packages;
-# create your package without the name (don't use storybook)
-npx tsdx create utils
-# remove the old husky hook from package.json and the prettier config
-cat << EOF
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-EOF
-# change the name in package.json to "@slate-extensions/utils"
-cat << EOF
-"name": "@slate-extensions/utils"
-EOF
-
-# create a new tsconfig.build.json and remove the default tsconfig.json
-cat << EOF
-{
-  "extends": "../../tsconfig.build.json",
-  "include": ["src", "types", "../../types"]
-}
-EOF
-
-# make the scripts point to the new tsconfig.build.json
-cat << EOF
-    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
-    "build": "tsdx build --tsconfig tsconfig.build.json",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "yarn build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-EOF
-
-# remove the example folder if one exists
-
-
-```
-
-### Expressing a Dependency Between Packages
-
-Make `@slate-extensions/common` a dependency of `@slate-extensions/core`
-
-```sh
-lerna add "@slate-extensions/common" --scope="@slate-extensions/core"  [--dev] [--exact] [--peer]
-```
-
-### Running Tests in Watch mode
-
-```sh
-lerna run test --stream --parallel -- --watch
-```
+Both `example` and `storybook` have `private: true` in their `package.json` so they are not accidentally published.
