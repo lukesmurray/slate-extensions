@@ -2,7 +2,7 @@
   // extend common settings
   "extends": "./tsconfig.build.json",
   // include packages and rypes
-  "include": ["packages", "types", "example"],
+  "include": ["packages", "types"],
   "compilerOptions": {
     "allowJs": false,
     "baseUrl": ".",

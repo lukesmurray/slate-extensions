@@ -2,7 +2,9 @@
 
 Based on [how to set up a typescript monorepo with lerna](https://medium.com/@NiGhTTraX/how-to-set-up-a-typescript-monorepo-with-lerna-c6acda7d4559) and [tsdx-monorepo](https://github.com/jaredpalmer/tsdx-monorepo)
 
-## Setup
+## Development
+
+Steps for setting up the lerna mono repo
 
 ```sh
 # start a lerna repo
@@ -136,5 +138,76 @@ cat << EOF
   "include": ["src", "types", "../../types"]
 }
 EOF
+```
 
+In the `example` package we have a parcel build.
+It seems to work with very few changes to the original configuration.
+
+In the `storybook` package we have a storybook.
+Storybook requires a local `tsconfig.json` so we have one there.
+
+## Common Tasks
+
+### Adding a new package
+
+```sh
+# go to the packages directory
+cd packages;
+# create your package without the name (don't use storybook)
+npx tsdx create utils
+# remove the old husky hook from package.json and the prettier config
+cat << EOF
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+EOF
+# change the name in package.json to "@slate-extensions/utils"
+cat << EOF
+"name": "@slate-extensions/utils"
+EOF
+
+# create a new tsconfig.build.json and remove the default tsconfig.json
+cat << EOF
+{
+  "extends": "../../tsconfig.build.json",
+  "include": ["src", "types", "../../types"]
+}
+EOF
+
+# make the scripts point to the new tsconfig.build.json
+cat << EOF
+    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "yarn build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+EOF
+
+# remove the example folder if one exists
+
+
+```
+
+### Expressing a Dependency Between Packages
+
+Make `@slate-extensions/common` a dependency of `@slate-extensions/core`
+
+```sh
+lerna add "@slate-extensions/common" --scope="@slate-extensions/core"  [--dev] [--exact] [--peer]
+```
+
+### Running Tests in Watch mode
+
+```sh
+lerna run test --stream --parallel -- --watch
 ```
