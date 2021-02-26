@@ -111,12 +111,7 @@ cat << EOF
   "command": {
     "version": {
       "allowBranch": ["master"],
-      "message": "chore(release): publish %s",
-      "conventional-commits": true,
-      "create-release": "github",
-      "force-publish": true,
-      "sign-git-tag": true,
-      "sign-git-commit": true
+      "message": "chore(release): publish %s"
     }
   }
 }

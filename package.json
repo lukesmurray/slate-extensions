@@ -17,7 +17,7 @@
     "prepare": "lerna run prepare --",
     "prepublish": "lerna run prepublish",
     "size": "lerna run size",
-    "version": "HUSKY=0 lerna version",
+    "version": "HUSKY=0 lerna version --conventional-commits --create-release github --force-publish --sign-git-tag --sign-git-commit",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
