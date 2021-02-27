@@ -3,17 +3,32 @@
   "author": "Luke Murray",
   "version": "0.2.0",
   "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
-    "start": "yarn storybook",
-    "build": "yarn build-storybook",
-    "test": "tsdx test --passWithNoTests",
+    "start": "concurrently --kill-others \"yarn run start:storybook\" \"yarn run start:tsdx\"",
+    "start:storybook": "yarn storybook",
+    "start:tsdx": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "yarn run build:tsdx && yarn run build:storybook",
+    "build:storybook": "yarn build-storybook",
+    "build:tsdx": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "yarn build",
     "storybook": "start-storybook -p 6006 --quiet",
     "build-storybook": "build-storybook"
   },
+  "module": "dist/storybook.esm.js",
   "dependencies": {
-    "@slate-extensions/core": "^0.2.0"
+    "@slate-extensions/core": "^0.2.0",
+    "@tippyjs/react": "^4.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
@@ -25,6 +40,7 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "babel-loader": "^8.2.2",
+    "concurrently": "^6.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-is": "^17.0.1",

@@ -20,6 +20,10 @@ module.exports = {
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    // TODO(lukemurray): move this into the common folder
+    // allow unused locals (we use them for defining types in common)
+    "no-unused-vars": ["off", { varsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-unused-vars": ["off", { varsIgnorePattern: "^_" }],
   },
   // prevent eslint from searching above this file
   root: true,

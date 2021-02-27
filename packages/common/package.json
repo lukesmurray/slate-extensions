@@ -1,4 +1,6 @@
 {
+  "name": "@slate-extensions/common",
+  "author": "Luke Murray",
   "version": "0.2.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -19,8 +21,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "name": "@slate-extensions/common",
-  "author": "Luke Murray",
   "module": "dist/common.esm.js",
   "size-limit": [
     {

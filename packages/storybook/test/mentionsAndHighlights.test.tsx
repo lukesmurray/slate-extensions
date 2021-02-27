@@ -1,11 +1,11 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
-import { Default as Thing } from "../src/stories/Thing.stories";
+import { MentionsAndHighlights } from "../src";
 
-describe("Thing", () => {
+describe("MentionsAndHighlights", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<Thing />, div);
+    ReactDOM.render(<MentionsAndHighlights />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

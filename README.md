@@ -68,7 +68,18 @@ EOF
 
 # remove the example folder if one exists
 
+# add a jest config
+cat << EOF
+const rootConfig = require("../../jest.config");
 
+module.exports = {
+  ...rootConfig,
+};
+EOF
+
+# to be extra nice try to follow the styling/ordering of the other package.json
+# files order dependencies as normal, dev, peer. put name, author, version info
+# at the top
 ```
 
 ### Expressing a Dependency Between Packages
