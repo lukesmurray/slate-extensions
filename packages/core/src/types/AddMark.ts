@@ -1,5 +1,5 @@
+import { Next } from "@slate-extensions/common";
 import { Editor } from "slate";
-import { Next } from "../../common";
 
 /**
  * Function called whenever a mark is added in the editor.

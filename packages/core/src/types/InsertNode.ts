@@ -1,5 +1,5 @@
+import { Next } from "@slate-extensions/common";
 import { Editor, Node } from "slate";
-import { Next } from "../../common";
 
 /**
  * Function called whenever insert node occurs in the editor.

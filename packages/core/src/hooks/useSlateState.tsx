@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { Descendant } from "slate";
-import { defaultInitialState } from "../../common";
-import { useSlateWithExtensionsOptions } from "../../core";
+import { useSlateWithExtensionsOptions } from "..";
+import { defaultInitialState } from "@slate-extensions/common";
 
 /**
  * Simple hook to manage slate state using react.

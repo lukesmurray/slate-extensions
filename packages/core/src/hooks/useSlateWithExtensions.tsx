@@ -1,7 +1,11 @@
+import {
+  defaultInitialState,
+  FunctionProperties,
+  pipe,
+} from "@slate-extensions/common";
 import { useCallback, useMemo, useState } from "react";
 import { createEditor, Editor } from "slate";
 import { ReactEditor, withReact } from "slate-react";
-import { defaultInitialState, FunctionProperties, pipe } from "../../common";
 import { withHistoryStable } from "../plugins";
 import {
   EditableWithExtensionsProps,

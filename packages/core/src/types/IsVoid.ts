@@ -1,5 +1,5 @@
+import { Next } from "@slate-extensions/common";
 import { Editor, Element } from "slate";
-import { Next } from "../../common";
 
 /**
  * Function used to determine if an element is a void element.

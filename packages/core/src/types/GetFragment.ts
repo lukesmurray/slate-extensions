@@ -1,5 +1,5 @@
+import { Next } from "@slate-extensions/common";
 import { Descendant, Editor } from "slate";
-import { Next } from "../../common";
 
 /**
  * Function called whenever get fragment occurs in the editor.

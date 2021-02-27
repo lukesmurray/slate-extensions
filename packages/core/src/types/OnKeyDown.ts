@@ -1,6 +1,6 @@
+import { Next } from "@slate-extensions/common";
 import { KeyboardEvent } from "react";
 import { Editor } from "slate";
-import { Next } from "../../common";
 
 /**
  * Function used to handle key down.
