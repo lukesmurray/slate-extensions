@@ -6,7 +6,7 @@ import { Descendant, Range, Text } from "slate";
 import { Editable, Slate } from "slate-react";
 
 export default {
-  title: "Examples/Highlights",
+  title: "Core/Highlights",
 } as Meta;
 
 export const Highlights: Story = () => {
@@ -57,7 +57,7 @@ export const useHighlightExtension = (
             ranges.push({
               anchor: { path, offset: offset - search.length },
               focus: { path, offset },
-              highlight: true,
+              type: "highlight",
             });
           }
 
@@ -73,7 +73,7 @@ export const useHighlightExtension = (
   // render leaf for rendering search text
   const renderLeaf = useCallback<NonNullable<SlateExtension["renderLeaf"]>>(
     ({ leaf, children }) => {
-      if (leaf.highlight) {
+      if (leaf.type === "highlight") {
         return <span style={{ backgroundColor: "#ffeeba" }}>{children}</span>;
       }
       return undefined;

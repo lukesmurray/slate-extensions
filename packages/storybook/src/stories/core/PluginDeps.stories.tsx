@@ -10,7 +10,7 @@ export default {
   title: "Examples/PluginDeps",
 } as Meta;
 
-export const Default: Story = () => {
+export const PluginDeps: Story = () => {
   const [value, onChange] = useSlateState();
   const pluginsDeps = useContrivedPluginDeps(value, 0.2);
 

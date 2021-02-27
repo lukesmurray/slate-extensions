@@ -8,4 +8,6 @@ import { RenderLeafProps } from "slate-react";
  * You do not need to add the attributes to your return value.
  * The attributes are added by default.
  */
-export type RenderLeaf = (props: RenderLeafProps) => JSX.Element | undefined;
+export type RenderLeaf = (
+  props: RenderLeafProps
+) => JSX.Element | undefined | void;

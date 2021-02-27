@@ -22,3 +22,4 @@ export * from "./SlateExtension";
 export * from "./SlatePlugin";
 export * from "./UseSlateWithExtensionsOptions";
 export * from "./UseSlateWithExtensionsResult";
+export * from "./slateCustomTypes";

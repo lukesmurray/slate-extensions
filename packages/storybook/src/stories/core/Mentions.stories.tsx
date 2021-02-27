@@ -3,7 +3,7 @@ import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Tippy, { TippyProps } from "@tippyjs/react";
 import React, { useCallback, useMemo, useState } from "react";
-import { Descendant, Editor, Range, Transforms } from "slate";
+import { CustomElement, Descendant, Editor, Range, Transforms } from "slate";
 import {
   Editable,
   RenderElementProps,
@@ -151,8 +151,9 @@ export const useMentionExtension = (): SlateExtension & {
   const renderElement = useCallback<
     NonNullable<SlateExtension["renderElement"]>
   >(props => {
-    if (props.element.type === mentionType) {
-      return <MentionElement {...props} />;
+    const { element } = props;
+    if (element.type === mentionType) {
+      return <MentionElement {...props} element={element} />;
     }
     return undefined;
   }, []);
@@ -188,7 +189,7 @@ const MentionElement = ({
   attributes,
   children,
   element,
-}: RenderElementProps) => {
+}: RenderElementProps & { element: CustomElement["Mention"] }) => {
   const selected = useSelected();
   const focused = useFocused();
   return (

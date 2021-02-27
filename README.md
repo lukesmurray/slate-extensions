@@ -42,18 +42,8 @@ cat << EOF
     "trailingComma": "es5"
   },
 EOF
-# change the name in package.json to "@slate-extensions/utils"
-cat << EOF
-"name": "@slate-extensions/utils"
-EOF
 
-# create a new tsconfig.build.json and remove the default tsconfig.json
-cat << EOF
-{
-  "extends": "../../tsconfig.build.json",
-  "include": ["src", "types", "../../types"]
-}
-EOF
+# remove husky as a dependency
 
 # make the scripts point to the new tsconfig.build.json
 cat << EOF
@@ -66,9 +56,20 @@ cat << EOF
     "analyze": "size-limit --why"
 EOF
 
-# remove the example folder if one exists
+# change the name in package.json to "@slate-extensions/utils"
+cat << EOF
+"name": "@slate-extensions/utils"
+EOF
 
-# add a jest config
+# replace tsconfig.json with tsconfig.build.json containing
+cat << EOF
+{
+  "extends": "../../tsconfig.build.json",
+  "include": ["src", "types", "../../types"]
+}
+EOF
+
+# create a jest.config.js file containing
 cat << EOF
 const rootConfig = require("../../jest.config");
 
@@ -77,9 +78,13 @@ module.exports = {
 };
 EOF
 
-# to be extra nice try to follow the styling/ordering of the other package.json
-# files order dependencies as normal, dev, peer. put name, author, version info
-# at the top
+# remove the example folder if one exists
+
+# try to follow the styling/ordering of other package.json files
+# name, author, version, etc at the top
+# make the version the same as the version in lerna.json
+# make the react version for peer dependencies the same as the react version
+# used in other packages
 ```
 
 ### Expressing a Dependency Between Packages
@@ -115,6 +120,26 @@ npm install -g npm-check-updates
 lerna exec -- "ncu -u"
 yarn install
 ```
+
+### Structuring a new Extension
+
+A good way to build your extensions is in a single folder `<name>Extension`.
+The folder can contain a hook which will create your extension called `use<name>Extension`.
+The hook can be defined at the top level of the folder.
+Within the folder you can organize utility methods used by your extension with the following structure.
+
+- Transforms
+  - Used to modify the contents of the document
+- Queries
+  - Used to query the document semantically.
+- Elements
+  - Functions used to render leaves and elements
+- Components
+  - Auxiliary components rendered outside the editor such as toolbars.
+- Decorators
+  - Decorator functions
+- Normalizers
+  - Decorator functions
 
 ## How this Repo Was Setup?
 
