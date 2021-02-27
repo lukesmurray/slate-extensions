@@ -1,5 +1,5 @@
 import { Editor } from "slate";
-import { Next } from "@slate-extensions/common";
+import { Next } from "..";
 
 /**
  * Function called whenever delete backward occurs in the editor.

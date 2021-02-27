@@ -1,18 +1,16 @@
 import {
-  defaultInitialState,
+  EditableWithExtensionsProps,
   FunctionProperties,
   pipe,
+  slateEmptyValue,
+  SlateWithExtensionsProps,
+  useSlateWithExtensionsOptions,
+  useSlateWithExtensionsResult,
 } from "@slate-extensions/common";
 import { useCallback, useMemo, useState } from "react";
 import { createEditor, Editor } from "slate";
 import { ReactEditor, withReact } from "slate-react";
 import { withHistoryStable } from "../plugins";
-import {
-  EditableWithExtensionsProps,
-  SlateWithExtensionsProps,
-  useSlateWithExtensionsOptions,
-  useSlateWithExtensionsResult,
-} from "../types";
 import {
   decorateExtensions,
   renderElementExtensions,
@@ -26,7 +24,7 @@ export const useSlateWithExtensions = (
   options?: useSlateWithExtensionsOptions
 ): useSlateWithExtensionsResult => {
   const [uncontrolledValue, setUncontrolledValue] = useState(
-    options?.initialState ?? defaultInitialState
+    options?.initialState ?? slateEmptyValue
   );
   // get the memoized properties from options
   const onChange = useMemo(() => options?.onChange ?? setUncontrolledValue, [

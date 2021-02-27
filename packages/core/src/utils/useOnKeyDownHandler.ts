@@ -1,9 +1,7 @@
-import { compose, isDefined } from "@slate-extensions/common";
+import { compose, isDefined, SlateExtension } from "@slate-extensions/common";
 import { useMemo } from "react";
 import { Editor } from "slate";
 import { EditableProps } from "slate-react/dist/components/editable";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SlateExtension } from "../types";
 
 export const useOnKeyDownHandler = (
   editor: Editor,

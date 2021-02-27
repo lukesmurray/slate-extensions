@@ -1,6 +1,6 @@
+import { RenderLeaf, SlateExtension } from "@slate-extensions/common";
 import React from "react";
 import { DefaultLeaf, RenderLeafProps } from "slate-react";
-import { RenderLeaf, SlateExtension } from "../types";
 
 /**
  * @see {RenderLeaf}

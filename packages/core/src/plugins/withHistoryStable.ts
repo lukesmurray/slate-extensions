@@ -1,5 +1,5 @@
+import { SlatePlugin } from "@slate-extensions/common";
 import { HistoryEditor, withHistory } from "slate-history";
-import { SlatePlugin } from "..";
 
 /**
  * Rewrite of with history to support plugins that can be applied multiple times.

@@ -1,8 +1,5 @@
-import {
-  SlateExtension,
-  useSlateState,
-  useSlateWithExtensions,
-} from "@slate-extensions/core";
+import { SlateExtension } from "@slate-extensions/common";
+import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Tippy, { TippyProps } from "@tippyjs/react";
 import React, { useCallback, useMemo, useState } from "react";

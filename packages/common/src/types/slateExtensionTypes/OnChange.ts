@@ -1,5 +1,5 @@
 import { Editor } from "slate";
-import { Next } from "@slate-extensions/common";
+import { Next } from "..";
 
 /**
  * Function called whenever a change occurs in an editor.

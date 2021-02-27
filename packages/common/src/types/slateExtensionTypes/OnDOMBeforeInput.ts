@@ -1,5 +1,5 @@
 import { Editor } from "slate";
-import { Next } from "@slate-extensions/common";
+import { Next } from "..";
 
 /**
  * Function used to handle before input events.

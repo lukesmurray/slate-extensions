@@ -1,5 +1,5 @@
+import { Decorate, SlateExtension } from "@slate-extensions/common";
 import { Editor, NodeEntry, Range } from "slate";
-import { Decorate, SlateExtension } from "../types";
 
 export const decorateExtensions = (
   editor: Editor,

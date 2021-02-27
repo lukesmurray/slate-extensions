@@ -1,5 +1,5 @@
-import { Next } from "@slate-extensions/common";
 import { Editor, NodeEntry } from "slate";
+import { Next } from "..";
 
 /**
  * Function called whenever normalization occurs in the editor.

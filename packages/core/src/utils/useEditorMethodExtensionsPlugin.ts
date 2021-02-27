@@ -2,11 +2,11 @@ import {
   compose,
   FunctionPropertyNames,
   isDefined,
+  SlateExtension,
+  SlatePlugin,
 } from "@slate-extensions/common";
 import { useCallback } from "react";
 import { Editor } from "slate";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SlateExtension, SlatePlugin } from "../types";
 
 export const useEditorMethodExtensionsPlugin = (
   extensions: SlateExtension[],

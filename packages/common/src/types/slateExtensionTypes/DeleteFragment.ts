@@ -1,5 +1,5 @@
-import { Next } from "@slate-extensions/common";
 import { Editor } from "slate";
+import { Next } from "..";
 
 /**
  * Function called whenever delete fragment occurs in the editor.

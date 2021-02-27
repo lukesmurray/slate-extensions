@@ -1,6 +1,8 @@
-export { Controlled } from "./Controlled.stories";
-export { Highlights } from "./Highlights.stories";
-export { LogOperations } from "./LogOperations.stories";
-export { Mentions } from "./Mentions.stories";
-export { MentionsAndHighlights } from "./MentionsAndHighlights.stories";
-export { Uncontrolled } from "./Uncontrolled.stories";
+export * from "./Controlled.stories";
+export * from "./Highlights.stories";
+export * from "./LogOperations.stories";
+export * from "./Mentions.stories";
+export * from "./MentionsAndHighlights.stories";
+export * from "./Middleware.stories";
+export * from "./PluginDeps.stories";
+export * from "./Uncontrolled.stories";

@@ -1,8 +1,5 @@
-import {
-  SlateExtension,
-  useSlateState,
-  useSlateWithExtensions,
-} from "@slate-extensions/core";
+import { SlateExtension } from "@slate-extensions/common";
+import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React, { useCallback, useState } from "react";
 import { Descendant, Range, Text } from "slate";

@@ -1,7 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { RenderElement, SlateExtension } from "@slate-extensions/common";
 import React from "react";
 import { DefaultElement, RenderElementProps } from "slate-react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { RenderElement, SlateExtension } from "../types";
 
 /**
  * @see {RenderElement}

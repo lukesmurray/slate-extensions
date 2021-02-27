@@ -1,4 +1,3 @@
-export * from "./FunctionProperties";
-export * from "./FunctionPropertyNames";
-export * from "./Head";
-export * from "./Next";
+export * from "./slateExtensionTypes";
+export * from "./typeGuards";
+export * from "./utilityTypes";
