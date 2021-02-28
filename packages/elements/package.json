@@ -16,6 +16,8 @@
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
     "build": "tsdx build --tsconfig tsconfig.build.json",
     "test": "tsdx test",
+    "test:watch": "tsdx test --watch",
+    "test:coverage": "tsdx test --coverage",
     "lint": "tsdx lint",
     "prepare": "yarn build",
     "size": "size-limit",
@@ -34,6 +36,7 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.9.2",
+    "@testing-library/react-hooks": "^5.0.3",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "react": "^17.0.1",

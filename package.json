@@ -5,6 +5,8 @@
     "start": "lerna run start --stream --parallel",
     "build": "lerna run build",
     "test": "lerna run test --",
+    "test:watch": "lerna run test:watch --stream --parallel",
+    "test:coverage": "lerna run test:coverage",
     "lint": "lerna run lint -- --fix",
     "prepare": "lerna run prepare --",
     "size": "lerna run size",

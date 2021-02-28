@@ -78,7 +78,34 @@ module.exports = {
 };
 EOF
 
+# create a launch.json file with the following config
+cat << EOF
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "name": "vscode-jest-tests",
+      "request": "launch",
+      "args": ["test", "--runInBand"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      // use the jest package from the root of the yarn workspace
+      "program": "${workspaceFolder}/../../node_modules/.bin/tsdx"
+    }
+  ]
+}
+EOF
+
 # remove the example folder if one exists
+
+# add the new folder to the list of folders in the .code-workspace file
+
 
 # try to follow the styling/ordering of other package.json files
 # name, author, version, etc at the top

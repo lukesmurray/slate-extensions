@@ -20,6 +20,8 @@
     "build:storybook": "yarn build-storybook",
     "build:tsdx": "tsdx build --tsconfig tsconfig.build.json",
     "test": "tsdx test",
+    "test:watch": "tsdx test --watch",
+    "test:coverage": "tsdx test --coverage",
     "lint": "tsdx lint",
     "prepare": "yarn build",
     "storybook": "start-storybook -p 6006 --quiet",

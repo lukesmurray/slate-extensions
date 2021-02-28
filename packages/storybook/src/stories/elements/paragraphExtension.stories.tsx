@@ -1,5 +1,8 @@
 import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
-import { useParagraphExtension } from "@slate-extensions/elements";
+import {
+  paragraphType,
+  useParagraphExtension,
+} from "@slate-extensions/elements";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 import { Editable, Slate } from "slate-react";
@@ -14,7 +17,7 @@ export const Paragraph: Story = () => {
       children: [
         { text: "This is a slate editor where every line is a paragraph" },
       ],
-      type: "p",
+      type: paragraphType,
     },
   ]);
 
@@ -29,4 +32,30 @@ export const Paragraph: Story = () => {
       <Editable {...getEditableProps()} />
     </Slate>
   );
+};
+
+export const UncontrolledParagraph: Story = () => {
+  const TestComponent = () => {
+    const { getEditableProps, getSlateProps } = useSlateWithExtensions({
+      extensions: [useParagraphExtension()],
+      initialState: [
+        {
+          type: paragraphType,
+          children: [{ text: "this is a paragraph element" }],
+        },
+      ],
+    });
+
+    const { value } = getSlateProps();
+
+    return (
+      <div>
+        <Slate {...getSlateProps()}>
+          <Editable {...getEditableProps()} />
+        </Slate>
+        <pre>{JSON.stringify(value, null, 2)}</pre>
+      </div>
+    );
+  };
+  return <TestComponent />;
 };

@@ -1,0 +1,32 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "name": "common",
+      "path": "./packages/common"
+    },
+    {
+      "name": "core",
+      "path": "./packages/core"
+    },
+    {
+      "name": "elements",
+      "path": "./packages/elements"
+    },
+    {
+      "name": "example",
+      "path": "./packages/example"
+    },
+    {
+      "name": "storybook",
+      "path": "./packages/storybook"
+    }
+  ],
+  "settings": {
+    "jest.pathToJest": "yarn run test",
+    "jest.disabledWorkspaceFolders": ["root", "example"]
+  }
+}
