@@ -33,29 +33,3 @@ export const Paragraph: Story = () => {
     </Slate>
   );
 };
-
-export const UncontrolledParagraph: Story = () => {
-  const TestComponent = () => {
-    const { getEditableProps, getSlateProps } = useSlateWithExtensions({
-      extensions: [useParagraphExtension()],
-      initialState: [
-        {
-          type: paragraphType,
-          children: [{ text: "this is a paragraph element" }],
-        },
-      ],
-    });
-
-    const { value } = getSlateProps();
-
-    return (
-      <div>
-        <Slate {...getSlateProps()}>
-          <Editable {...getEditableProps()} />
-        </Slate>
-        <pre>{JSON.stringify(value, null, 2)}</pre>
-      </div>
-    );
-  };
-  return <TestComponent />;
-};

@@ -7,7 +7,7 @@ import { SearchBar, useHighlightExtension } from "./Highlights.stories";
 import { MentionSelect, useMentionExtension } from "./Mentions.stories";
 
 export default {
-  title: "Examples/PluginDeps",
+  title: "Core/Plugin Deps",
 } as Meta;
 
 export const PluginDeps: Story = () => {

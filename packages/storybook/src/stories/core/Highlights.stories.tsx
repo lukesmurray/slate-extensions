@@ -7,6 +7,7 @@ import { Editable, Slate } from "slate-react";
 
 export default {
   title: "Core/Highlights",
+  includeStories: ["Highlights"],
 } as Meta;
 
 export const Highlights: Story = () => {

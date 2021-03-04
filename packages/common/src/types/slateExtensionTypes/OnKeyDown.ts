@@ -8,7 +8,7 @@ import { Next } from "..";
  * Next is undefined if there are no more onKeyDown handlers.
  */
 export type OnKeyDown = (
-  event: KeyboardEvent<{}>,
+  event: KeyboardEvent,
   editor: Editor,
   next: Next<OnKeyDown> | undefined
 ) => undefined | void;

@@ -5,7 +5,7 @@ import React, { useMemo } from "react";
 import { Editable, Slate } from "slate-react";
 
 export default {
-  title: "Examples/Middleware",
+  title: "Core/Middleware",
 } as Meta;
 
 export const OnChange: Story = () => {

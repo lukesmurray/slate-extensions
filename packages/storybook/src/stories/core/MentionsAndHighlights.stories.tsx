@@ -9,7 +9,7 @@ import { SearchBar, useHighlightExtension } from "./Highlights.stories";
 import { MentionSelect, useMentionExtension } from "./Mentions.stories";
 
 export default {
-  title: "Examples/MentionsAndHighlights",
+  title: "Core/Mentions And Highlights",
 } as Meta;
 
 export const MentionsAndHighlights: Story = () => {

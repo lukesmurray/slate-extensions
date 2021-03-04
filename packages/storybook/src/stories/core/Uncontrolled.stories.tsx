@@ -4,7 +4,7 @@ import React from "react";
 import { Editable, Slate } from "slate-react";
 
 export default {
-  title: "Examples/Uncontrolled",
+  title: "Core/Uncontrolled",
 } as Meta;
 
 export const Uncontrolled: Story = () => {

@@ -16,7 +16,8 @@ import "tippy.js/animations/scale.css";
 import "tippy.js/themes/light.css";
 
 export default {
-  title: "Examples/Mentions",
+  title: "Core/Mentions",
+  includeStories: ["Mentions"],
 } as Meta;
 
 const mentionType = "mention" as const;

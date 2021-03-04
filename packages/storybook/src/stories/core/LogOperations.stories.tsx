@@ -5,7 +5,7 @@ import React, { useCallback } from "react";
 import { Editable, Slate } from "slate-react";
 
 export default {
-  title: "Examples/LogOperations",
+  title: "Core/Log Operations",
 } as Meta;
 
 export const LogOperations: Story = () => {
