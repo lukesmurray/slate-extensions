@@ -10,7 +10,6 @@ import {
 import { useCallback, useMemo, useState } from "react";
 import { createEditor, Editor } from "slate";
 import { ReactEditor, withReact } from "slate-react";
-import { withHistoryStable } from "../plugins";
 import {
   decorateExtensions,
   renderElementExtensions,
@@ -18,7 +17,8 @@ import {
   useEditorMethodExtensionsPlugin,
   useOnDOMBeforeInputHandler,
   useOnKeyDownHandler,
-} from "../utils";
+} from "../internalUtils";
+import { withHistoryStable } from "../plugins";
 
 export const useSlateWithExtensions = (
   options?: useSlateWithExtensionsOptions
@@ -120,6 +120,10 @@ export const useSlateWithExtensions = (
     extensions,
     "removeMark"
   );
+  const insertDataPlugin = useEditorMethodExtensionsPlugin<ReactEditor>(
+    extensions,
+    "insertData"
+  );
 
   // apply the plugins to the editor
   const editor = useMemo(() => {
@@ -144,7 +148,8 @@ export const useSlateWithExtensions = (
       insertNodePlugin,
       insertTextPlugin,
       removeMarkPlugin,
-      ...plugins
+      ...plugins,
+      insertDataPlugin
     ) as ReactEditor;
   }, [
     addMarkPlugin,
@@ -156,6 +161,7 @@ export const useSlateWithExtensions = (
     editorSingleton,
     getFragmentPlugin,
     insertBreakPlugin,
+    insertDataPlugin,
     insertFragmentPlugin,
     insertNodePlugin,
     insertTextPlugin,

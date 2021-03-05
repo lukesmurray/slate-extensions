@@ -3,17 +3,18 @@ import {
   FunctionPropertyNames,
   isDefined,
   SlateExtension,
+  SlateExtensionFunctions,
   SlatePlugin,
 } from "@slate-extensions/common";
 import { useCallback } from "react";
 import { Editor } from "slate";
 
-export const useEditorMethodExtensionsPlugin = (
+export const useEditorMethodExtensionsPlugin = <E extends Editor = Editor>(
   extensions: SlateExtension[],
-  method: FunctionPropertyNames<Editor>
-): SlatePlugin =>
-  useCallback<SlatePlugin>(
-    (editor: Editor) => {
+  method: Extract<FunctionPropertyNames<E>, SlateExtensionFunctions>
+) =>
+  useCallback<SlatePlugin<E>>(
+    (editor: E) => {
       const { [method]: editorMethod } = editor;
 
       const middleware = compose(
@@ -21,9 +22,10 @@ export const useEditorMethodExtensionsPlugin = (
         editorMethod
       );
 
-      editor[method] = (...args: any[]) => {
-        return middleware.apply(null, [...args, editor] as any) as any;
-      };
+      editor[method] = ((...args: any[]) => {
+        //@ts-expect-error
+        return middleware.apply(null, [...args, editor]);
+      }) as any;
 
       return editor;
     },

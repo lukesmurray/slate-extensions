@@ -1,4 +1,7 @@
-import { SlateExtension } from "@slate-extensions/common";
+import {
+  RequiredSlateExtension,
+  SlateExtension,
+} from "@slate-extensions/common";
 import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Tippy, { TippyProps } from "@tippyjs/react";
@@ -67,7 +70,7 @@ export const useMentionExtension = (): SlateExtension & {
   };
 
   // handle on key down
-  const onKeyDown = useCallback<NonNullable<SlateExtension["onKeyDown"]>>(
+  const onKeyDown = useCallback<RequiredSlateExtension["onKeyDown"]>(
     (event, editor) => {
       if (target) {
         switch (event.key) {
@@ -97,7 +100,7 @@ export const useMentionExtension = (): SlateExtension & {
   );
 
   // handle on change
-  const onChange = useCallback<NonNullable<SlateExtension["onChange"]>>(
+  const onChange = useCallback<RequiredSlateExtension["onChange"]>(
     (editor, next) => {
       const { selection } = editor;
       if (selection && Range.isCollapsed(selection)) {
@@ -127,7 +130,7 @@ export const useMentionExtension = (): SlateExtension & {
   );
 
   // make mentions inline elements
-  const isInline = useCallback<NonNullable<SlateExtension["isInline"]>>(
+  const isInline = useCallback<RequiredSlateExtension["isInline"]>(
     (element, editor, next) => {
       if (element.type === mentionType) {
         return true;
@@ -138,7 +141,7 @@ export const useMentionExtension = (): SlateExtension & {
   );
 
   // make mentions void elements
-  const isVoid = useCallback<NonNullable<SlateExtension["isVoid"]>>(
+  const isVoid = useCallback<RequiredSlateExtension["isVoid"]>(
     (element, editor, next) => {
       if (element.type === mentionType) {
         return true;
@@ -149,15 +152,16 @@ export const useMentionExtension = (): SlateExtension & {
   );
 
   // render mentions with the MentionElement component
-  const renderElement = useCallback<
-    NonNullable<SlateExtension["renderElement"]>
-  >(props => {
-    const { element } = props;
-    if (element.type === mentionType) {
-      return <MentionElement {...props} element={element} />;
-    }
-    return undefined;
-  }, []);
+  const renderElement = useCallback<RequiredSlateExtension["renderElement"]>(
+    props => {
+      const { element } = props;
+      if (element.type === mentionType) {
+        return <MentionElement {...props} element={element} />;
+      }
+      return undefined;
+    },
+    []
+  );
 
   // function to get props for the mention select
   const getMentionSelectProps = useCallback<() => MentionSelectProps>(() => {

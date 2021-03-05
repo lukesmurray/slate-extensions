@@ -1,4 +1,7 @@
-import { SlateExtension } from "@slate-extensions/common";
+import {
+  RequiredSlateExtension,
+  SlateExtension,
+} from "@slate-extensions/common";
 import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React, { useCallback } from "react";
@@ -31,7 +34,7 @@ export const LogOperations: Story = () => {
 };
 
 const useLogOperationsExtension = (): SlateExtension => {
-  const onChange = useCallback<NonNullable<SlateExtension["onChange"]>>(
+  const onChange = useCallback<RequiredSlateExtension["onChange"]>(
     (editor, next) => {
       console.group("operations");
       editor.operations.forEach(op => console.log(op));

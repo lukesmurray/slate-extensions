@@ -1,4 +1,7 @@
-import { SlateExtension } from "@slate-extensions/common";
+import {
+  RequiredSlateExtension,
+  SlateExtension,
+} from "@slate-extensions/common";
 import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React, { useCallback, useState } from "react";
@@ -44,7 +47,7 @@ export const useHighlightExtension = (
   const [search, setSearch] = useState<string | undefined>(initialSearch);
 
   // decorate function for highlighting search text
-  const decorate = useCallback<NonNullable<SlateExtension["decorate"]>>(
+  const decorate = useCallback<RequiredSlateExtension["decorate"]>(
     ([node, path]) => {
       const ranges: Range[] = [];
 
@@ -72,7 +75,7 @@ export const useHighlightExtension = (
   );
 
   // render leaf for rendering search text
-  const renderLeaf = useCallback<NonNullable<SlateExtension["renderLeaf"]>>(
+  const renderLeaf = useCallback<RequiredSlateExtension["renderLeaf"]>(
     ({ leaf, children }) => {
       if (leaf.type === "highlight") {
         return <span style={{ backgroundColor: "#ffeeba" }}>{children}</span>;

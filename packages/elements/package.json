@@ -58,6 +58,7 @@
     "slate-react": "^0.60.4"
   },
   "dependencies": {
-    "@slate-extensions/common": "^0.2.0"
+    "@slate-extensions/common": "^0.2.0",
+    "@slate-extensions/core": "^0.2.0"
   }
 }

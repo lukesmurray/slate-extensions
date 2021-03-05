@@ -7,6 +7,7 @@ import {
   DeleteFragment,
   GetFragment,
   InsertBreak,
+  InsertData,
   InsertFragment,
   InsertNode,
   InsertText,
@@ -225,4 +226,14 @@ export interface SlateExtension {
    * Dependencies for removeMark
    */
   removeMarkDeps?: any[];
+
+  /**
+   * @see {InsertData}
+   */
+  insertData?: InsertData;
+
+  /**
+   * Dependencies for insertData
+   */
+  insertDataDeps?: any[];
 }
