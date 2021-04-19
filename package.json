@@ -17,7 +17,7 @@
     "start:app": "yarn run build && yarn --cwd packages/example && yarn --cwd packages/example start",
     "cypress": "cypress run",
     "cypress:open": "cypress open",
-    "publish": "lerna publish"
+    "publish": "lerna publish from-package"
   },
   "workspaces": [
     "packages/*"
@@ -44,7 +44,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^5.1.1",
     "identity-obj-proxy": "^3.0.0",
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "pinst": "^2.1.6"
   },
   "resolutions": {
     "**/@typescript-eslint/eslint-plugin": "^4.11.1",
@@ -53,5 +54,6 @@
     "**/ts-jest": "^26.4.4",
     "**/typescript": "^4.1.3"
   },
-  "private": true
+  "private": true,
+  "version": "0.0.0"
 }
