@@ -1,5 +1,5 @@
 name: E2E Test
-on: [pull_request]
+on: [push]
 jobs:
   cypress:
     name: Cypress
