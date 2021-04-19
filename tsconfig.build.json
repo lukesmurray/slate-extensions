@@ -32,7 +32,9 @@
     // include json files if you want
     "resolveJsonModule": true,
     // make sure separate compilation would be safe
-    "isolatedModules": true
+    "isolatedModules": true,
+    // allow iterating generators
+    "downlevelIteration": true
   },
   "exclude": ["node_modules", "dist"]
 }

@@ -1,5 +1,4 @@
-import { SlateExtension } from "@slate-extensions/common";
-import { useSlateWithExtensions } from "@slate-extensions/core";
+import { SlateExtension, useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React, { useMemo } from "react";
 import { Editable, Slate } from "slate-react";

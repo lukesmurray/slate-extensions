@@ -1,9 +1,7 @@
-import {
-  slateEmptyValue,
-  useSlateWithExtensionsOptions,
-} from "@slate-extensions/common";
 import { useCallback, useState } from "react";
 import { Descendant } from "slate";
+import { defaultInitialState } from "../data";
+import { UseSlateWithExtensionsOptions } from "../types";
 
 /**
  * Simple hook to manage slate state using react.
@@ -12,9 +10,9 @@ import { Descendant } from "slate";
 export const useSlateState = (
   initialState?: Descendant[]
 ): [Descendant[], (value: Descendant[]) => void] => {
-  const [value, setValue] = useState(initialState ?? slateEmptyValue);
+  const [value, setValue] = useState(initialState ?? defaultInitialState);
   const onChange = useCallback<
-    NonNullable<useSlateWithExtensionsOptions["onChange"]>
+    NonNullable<UseSlateWithExtensionsOptions["onChange"]>
   >(newValue => {
     setValue(newValue);
   }, []);

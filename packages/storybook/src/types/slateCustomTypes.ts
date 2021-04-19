@@ -5,6 +5,8 @@ declare module "slate" {
   }
   export interface CustomText {
     Text: { type: "highlight" };
+    SuggestionAddition: { suggestion_addition?: true };
+    SuggestionDeletion: { suggestion_deletion?: true };
   }
 }
 

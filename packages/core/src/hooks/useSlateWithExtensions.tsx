@@ -1,30 +1,29 @@
-import {
-  EditableWithExtensionsProps,
-  FunctionProperties,
-  pipe,
-  slateEmptyValue,
-  SlateWithExtensionsProps,
-  useSlateWithExtensionsOptions,
-  useSlateWithExtensionsResult,
-} from "@slate-extensions/common";
 import { useCallback, useMemo, useState } from "react";
 import { createEditor, Editor } from "slate";
+import { withHistory } from "slate-history";
 import { ReactEditor, withReact } from "slate-react";
+import { defaultInitialState } from "../data";
+import { pipe } from "../fpUtils";
+import { FunctionProperties } from "../typeHelpers";
+import {
+  EditableWithExtensionsProps,
+  SlateWithExtensionsProps,
+  UseSlateWithExtensionsOptions,
+  UseSlateWithExtensionsResult,
+} from "../types";
 import {
   decorateExtensions,
   renderElementExtensions,
   renderLeafExtensions,
+  useEditableEventExtensionsPlugin,
   useEditorMethodExtensionsPlugin,
-  useOnDOMBeforeInputHandler,
-  useOnKeyDownHandler,
-} from "../internalUtils";
-import { withHistoryStable } from "../plugins";
+} from "../utils";
 
 export const useSlateWithExtensions = (
-  options?: useSlateWithExtensionsOptions
-): useSlateWithExtensionsResult => {
+  options?: UseSlateWithExtensionsOptions
+): UseSlateWithExtensionsResult => {
   const [uncontrolledValue, setUncontrolledValue] = useState(
-    options?.initialState ?? slateEmptyValue
+    options?.initialState ?? defaultInitialState
   );
   // get the memoized properties from options
   const onChange = useMemo(() => options?.onChange ?? setUncontrolledValue, [
@@ -37,15 +36,28 @@ export const useSlateWithExtensions = (
   const extensions = useMemo(() => options?.extensions ?? [], [
     options?.extensions,
   ]);
-  const plugins = useMemo(
-    () => options?.plugins ?? [withReact, withHistoryStable], // default plugins
+
+  const prePlugins = useMemo(
+    () => options?.prePlugins ?? [withReact, withHistory], // default plugins
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [...(options?.pluginsDeps ?? [])]
+    []
+  );
+
+  const postPlugins = useMemo(
+    () => options?.postPlugins ?? [],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [...(options?.postPluginDeps ?? [])]
   );
 
   // create the editor as a singleton
   // see https://reactjs.org/docs/hooks-faq.html#how-to-create-expensive-objects-lazily
-  const [editorSingleton] = useState(() => options?.editor ?? createEditor());
+  const [editorSingleton] = useState(
+    () =>
+      pipe(
+        options?.editor ?? (createEditor() as any),
+        ...prePlugins
+      ) as ReactEditor
+  );
 
   // memoize the original functions from the editor
   const editorFunctions: FunctionProperties<Editor> = useMemo(() => {
@@ -65,6 +77,8 @@ export const useSlateWithExtensions = (
       insertNode: editorSingleton.insertNode,
       insertText: editorSingleton.insertText,
       removeMark: editorSingleton.removeMark,
+      insertData: editorSingleton.insertData,
+      setFragmentData: editorSingleton.setFragmentData,
     };
   }, [editorSingleton]);
 
@@ -120,9 +134,13 @@ export const useSlateWithExtensions = (
     extensions,
     "removeMark"
   );
-  const insertDataPlugin = useEditorMethodExtensionsPlugin<ReactEditor>(
+  const insertDataPlugin = useEditorMethodExtensionsPlugin(
     extensions,
     "insertData"
+  );
+  const setFragmentDataPlugin = useEditorMethodExtensionsPlugin(
+    extensions,
+    "setFragmentData"
   );
 
   // apply the plugins to the editor
@@ -148,8 +166,9 @@ export const useSlateWithExtensions = (
       insertNodePlugin,
       insertTextPlugin,
       removeMarkPlugin,
-      ...plugins,
-      insertDataPlugin
+      insertDataPlugin,
+      setFragmentDataPlugin,
+      ...postPlugins
     ) as ReactEditor;
   }, [
     addMarkPlugin,
@@ -169,8 +188,9 @@ export const useSlateWithExtensions = (
     isVoidPlugin,
     normalizeNodePlugin,
     onChangePlugin,
-    plugins,
+    postPlugins,
     removeMarkPlugin,
+    setFragmentDataPlugin,
   ]);
 
   const getSlateProps = useCallback((): SlateWithExtensionsProps => {
@@ -182,8 +202,60 @@ export const useSlateWithExtensions = (
   }, [editor, onChange, value]);
 
   // create the callbacks for the editable
-  const onKeyDown = useOnKeyDownHandler(editor, extensions);
-  const onDOMBeforeInput = useOnDOMBeforeInputHandler(editor, extensions);
+  const onKeyDown = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onKeyDown"
+  );
+  const onDOMBeforeInput = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onDOMBeforeInput"
+  );
+  const onBlur = useEditableEventExtensionsPlugin(editor, extensions, "onBlur");
+  const onClick = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onClick"
+  );
+  const onCompositionEnd = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onCompositionEnd"
+  );
+  const onCompositionUpdate = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onCompositionUpdate"
+  );
+  const onCompositionStart = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onCompositionStart"
+  );
+  const onCopy = useEditableEventExtensionsPlugin(editor, extensions, "onCopy");
+  const onCut = useEditableEventExtensionsPlugin(editor, extensions, "onCut");
+  const onDragOver = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onDragOver"
+  );
+  const onDragStart = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onDragStart"
+  );
+  const onDrop = useEditableEventExtensionsPlugin(editor, extensions, "onDrop");
+  const onFocus = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onFocus"
+  );
+  const onPaste = useEditableEventExtensionsPlugin(
+    editor,
+    extensions,
+    "onPaste"
+  );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const renderElement = useCallback(renderElementExtensions(extensions), [
@@ -193,9 +265,6 @@ export const useSlateWithExtensions = (
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const renderLeaf = useCallback(renderLeafExtensions(extensions), [
     ...extensions.flatMap(e => e.renderLeafDeps ?? []),
-    // see https://github.com/ianstormtaylor/slate/pull/3437
-    // render leaf cannot be memoized unless the decorate deps are passed to it
-    ...extensions.flatMap(e => e.decorateDeps ?? []),
   ]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -210,8 +279,38 @@ export const useSlateWithExtensions = (
       onKeyDown,
       decorate,
       onDOMBeforeInput,
+      onBlur,
+      onClick,
+      onCompositionEnd,
+      onCompositionStart,
+      onCompositionUpdate,
+      onCopy,
+      onCut,
+      onPaste,
+      onDragOver,
+      onDragStart,
+      onDrop,
+      onFocus,
     };
-  }, [decorate, onDOMBeforeInput, onKeyDown, renderElement, renderLeaf]);
+  }, [
+    decorate,
+    onBlur,
+    onClick,
+    onCompositionEnd,
+    onCompositionStart,
+    onCompositionUpdate,
+    onCopy,
+    onCut,
+    onDOMBeforeInput,
+    onDragOver,
+    onDragStart,
+    onDrop,
+    onFocus,
+    onKeyDown,
+    onPaste,
+    renderElement,
+    renderLeaf,
+  ]);
 
   return {
     getEditableProps,
