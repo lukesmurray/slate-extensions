@@ -16,7 +16,8 @@
     "postpublish": "pinst --enable",
     "start:app": "yarn run build && yarn --cwd packages/example && yarn --cwd packages/example start",
     "cypress": "cypress run",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "publish": "lerna publish"
   },
   "workspaces": [
     "packages/*"
