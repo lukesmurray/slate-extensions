@@ -1,7 +1,7 @@
 {
   "name": "@slate-extensions/core",
   "author": "Luke Murray",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -35,7 +35,7 @@
     }
   ],
   "dependencies": {
-    "@slate-extensions/common": "^0.3.0"
+    "@slate-extensions/common": "^0.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
