@@ -13,7 +13,10 @@
     "version": "HUSKY=0 lerna version --conventional-commits --force-publish --sign-git-tag --sign-git-commit",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
+    "start:app": "yarn run build && yarn --cwd packages/example && yarn --cwd packages/example start",
+    "cypress": "cypress run",
+    "cypress:open": "cypress open"
   },
   "workspaces": [
     "packages/*"
@@ -34,7 +37,9 @@
   "devDependencies": {
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
+    "@testing-library/cypress": "^7.0.6",
     "commitizen": "^4.2.3",
+    "cypress": "^7.1.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^5.1.1",
     "identity-obj-proxy": "^3.0.0",
