@@ -62,5 +62,9 @@
     "slate-history": "^0.60.4",
     "slate-hyperscript": "^0.60.4",
     "slate-react": "^0.60.4"
+  },
+  "gitHead": "30ff232c595348277fe143b3cad22261611f62af",
+  "publishConfig": {
+    "access": "public"
   }
 }
