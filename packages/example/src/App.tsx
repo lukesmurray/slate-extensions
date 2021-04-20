@@ -4,6 +4,7 @@ import {
   LogOperations,
   Mentions,
   MentionsAndHighlights,
+  ToolbarExample,
   Uncontrolled,
 } from "@slate-extensions/storybook";
 import * as React from "react";
@@ -25,6 +26,8 @@ const App = () => {
       <MentionsAndHighlights />
       <h2>Log Operations</h2>
       <LogOperations />
+      <h2>Balloon Toolbar</h2>
+      <ToolbarExample />
     </div>
   );
 };

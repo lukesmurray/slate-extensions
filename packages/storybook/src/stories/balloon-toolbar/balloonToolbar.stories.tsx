@@ -1,5 +1,5 @@
 import { BalloonToolbar } from "@slate-extensions/balloon-toolbar";
-import { useSlateState, useSlateWithExtensions } from "@slate-extensions/core";
+import { useSlateWithExtensions } from "@slate-extensions/core";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 import { Editable, Slate } from "slate-react";
@@ -9,19 +9,23 @@ export default {
 } as Meta;
 
 export const ToolbarExample: Story = () => {
-  const [value, onChange] = useSlateState([
-    { children: [{ text: "Highlight some text to see the toolbar" }] },
-  ]);
-
   const { getEditableProps, getSlateProps } = useSlateWithExtensions({
-    onChange,
-    value,
+    initialState: [
+      {
+        children: [{ text: "Highlight some text to see the toolbar" }],
+      },
+    ],
+    "data-testid": "toolbarExample-editor",
   });
 
   return (
     <Slate {...getSlateProps()}>
       <Editable {...getEditableProps()} />
-      <BalloonToolbar>This is the balloon content</BalloonToolbar>
+      <BalloonToolbar>
+        <div data-testid="toolbarExample-content">
+          This is some balloon content
+        </div>
+      </BalloonToolbar>
     </Slate>
   );
 };
