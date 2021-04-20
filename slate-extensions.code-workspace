@@ -19,6 +19,10 @@
     {
       "name": "storybook",
       "path": "./packages/storybook"
+    },
+    {
+      "name": "balloon-toolbar",
+      "path": "./packages/balloon-toolbar"
     }
   ],
   "settings": {

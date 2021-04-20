@@ -8,7 +8,7 @@ import { SlateExtension } from "./SlateExtension";
  */
 export type EditableWithExtensionsProps = Pick<
   EditableProps,
-  keyof SlateExtension & keyof EditableProps
+  keyof SlateExtension & keyof EditableProps & { ["data-testid"]?: string }
 >;
 
 /**

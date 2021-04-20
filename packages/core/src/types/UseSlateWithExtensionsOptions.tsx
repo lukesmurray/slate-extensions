@@ -53,4 +53,9 @@ export interface UseSlateWithExtensionsOptions {
    * you can pass the editor singleton but this is only really used for testing
    */
   editor?: Editor;
+
+  /**
+   * data-testid prop used for testing
+   */
+  ["data-testid"]?: string;
 }

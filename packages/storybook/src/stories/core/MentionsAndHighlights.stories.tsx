@@ -13,6 +13,9 @@ export default {
   title: "Core/Mentions And Highlights",
 } as Meta;
 
+export const mentionsAndHighlightsEditorTestId =
+  "mentions-and-highlights-editor";
+
 export const MentionsAndHighlights: Story = () => {
   const [value, onChange] = useSlateState(initialValue);
 
@@ -27,6 +30,7 @@ export const MentionsAndHighlights: Story = () => {
     onChange,
     value,
     extensions: [highlightExtension, mentionExtension],
+    "data-testid": mentionsAndHighlightsEditorTestId,
   });
 
   // render the search bar and the mention select

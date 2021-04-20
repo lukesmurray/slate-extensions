@@ -272,6 +272,8 @@ export const useSlateWithExtensions = (
     ...extensions.flatMap(e => e.decorateDeps ?? []),
   ]);
 
+  const dataTestId = options?.["data-testid"];
+
   const getEditableProps = useCallback((): EditableWithExtensionsProps => {
     return {
       renderElement,
@@ -291,8 +293,10 @@ export const useSlateWithExtensions = (
       onDragStart,
       onDrop,
       onFocus,
+      "data-testid": dataTestId,
     };
   }, [
+    dataTestId,
     decorate,
     onBlur,
     onClick,

@@ -7,7 +7,7 @@
     "test": "lerna run test --",
     "test:watch": "lerna run test:watch --stream --parallel",
     "test:coverage": "lerna run test:coverage",
-    "lint": "lerna run lint -- --fix",
+    "lint": "lerna run lint -- --fix --cache",
     "prepare": "lerna run prepare --",
     "size": "lerna run size",
     "version": "HUSKY=0 lerna version --conventional-commits --force-publish --sign-git-tag --sign-git-commit",

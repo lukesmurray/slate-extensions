@@ -1,5 +1,5 @@
 {
-  "name": "@slate-extensions/core",
+  "name": "@slate-extensions/balloon-toolbar",
   "author": "Luke Murray",
   "version": "0.3.1",
   "license": "MIT",
@@ -15,57 +15,43 @@
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
     "build": "tsdx build --tsconfig tsconfig.build.json",
-    "test": "tsdx test",
-    "test:watch": "tsdx test --watch",
-    "test:coverage": "tsdx test --coverage",
+    "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "prepare": "yarn build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "module": "dist/core.esm.js",
+  "peerDependencies": {
+    "react": "17.0.2",
+    "slate": "0.62.0",
+    "slate-react": "^0.62.0"
+  },
+  "module": "dist/balloon-toolbar.esm.js",
   "size-limit": [
     {
-      "path": "dist/core.cjs.production.min.js",
+      "path": "dist/balloon-toolbar.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/core.esm.js",
+      "path": "dist/balloon-toolbar.esm.js",
       "limit": "10 KB"
     }
   ],
-  "dependencies": {
-    "@slate-extensions/common": "^0.3.1"
-  },
   "devDependencies": {
-    "@babel/core": "^7.13.1",
     "@size-limit/preset-small-lib": "4.10.2",
-    "@testing-library/jest-dom": "^5.11.10",
+    "@slate-extensions/core": "^0.3.1",
     "@testing-library/react": "^11.2.6",
-    "@testing-library/react-hooks": "^5.0.3",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
-    "babel-loader": "^8.2.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-is": "^17.0.1",
     "size-limit": "4.10.2",
     "slate": "0.62.0",
-    "slate-history": "0.62.0",
-    "slate-hyperscript": "0.62.0",
     "slate-react": "0.62.0",
     "tsdx": "^0.14.1",
     "tslib": "2.2.0",
     "typescript": "4.2.4"
   },
-  "peerDependencies": {
-    "react": "17.0.2",
-    "slate": "0.62.0",
-    "slate-history": "0.62.0",
-    "slate-hyperscript": "0.62.0",
-    "slate-react": "0.62.0"
-  },
-  "gitHead": "30ff232c595348277fe143b3cad22261611f62af",
   "publishConfig": {
     "access": "public"
   }

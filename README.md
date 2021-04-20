@@ -61,6 +61,13 @@ cat << EOF
 "name": "@slate-extensions/utils"
 EOF
 
+# add publishConfig public
+cat << EOF
+"publishConfig": {
+  "access": "public"
+}
+EOF
+
 # replace tsconfig.json with tsconfig.build.json containing
 cat << EOF
 {
@@ -138,7 +145,9 @@ yarn run version
 
 ### Publishing
 
-TODO write this
+```sh
+yarn run publish
+```
 
 ### Upgrading all packages
 
